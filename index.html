@@ -1,90 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exam Simulator</title>
+    <title>Real Estate Certification Exam Simulator</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-        }
-        .gradient-bg {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Lato', sans-serif;
+            background-color: #eef2f9;
         }
         .card {
             background-color: white;
-            border-radius: 1rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            border: 1px solid #dbe1e8;
         }
         .btn {
             padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
+            border-radius: 0.375rem;
+            font-weight: 700;
+            font-family: 'Roboto', sans-serif;
             transition: all 0.2s ease-in-out;
             cursor: pointer;
             user-select: none;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
         .btn-primary {
-            background-color: #4f46e5;
+            background-color: #2563eb;
             color: white;
+            border: 1px solid #2563eb;
         }
         .btn-primary:hover {
-            background-color: #4338ca;
+            background-color: #1d4ed8;
         }
         .btn-secondary {
-            background-color: #e5e7eb;
-            color: #1f2937;
+            background-color: transparent;
+            color: #4b5563;
+            border: 1px solid #d1d5db;
         }
         .btn-secondary:hover {
-            background-color: #d1d5db;
+            background-color: #f9fafb;
+            border-color: #9ca3af;
         }
         .option-btn {
             border: 1px solid #d1d5db;
             text-align: left;
             width: 100%;
             background-color: white;
-            padding: 0.75rem 1.25rem;
+            padding: 1rem;
+            border-radius: 0.375rem;
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
         }
         .option-btn:hover {
-            background-color: #f9fafb;
+            background-color: #eff6ff;
+            border-color: #60a5fa;
         }
         .option-btn.selected {
-            background-color: #e0e7ff;
-            border-color: #4f46e5;
-            font-weight: 500;
+            background-color: #dbeafe;
+            border-color: #2563eb;
+            font-weight: 700;
+            color: #1e40af;
+        }
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #374151;
+        }
+        .header-logo svg {
+            width: 2.5rem;
+            height: 2.5rem;
+            color: #2563eb;
         }
     </style>
 </head>
-<body class="gradient-bg min-h-screen flex items-center justify-center p-4">
+<body class="flex items-center justify-center min-h-screen p-4">
 
     <div id="main-container" class="w-full max-w-4xl mx-auto">
         <!-- Login Screen -->
-        <div id="login-screen" class="card text-center">
-            <h1 class="text-3xl font-bold text-gray-800 mb-4">Exam Simulator</h1>
-            <p class="text-gray-600 mb-6">Enter the password from your book to access.</p>
+        <div id="login-screen" class="card p-8 text-center">
+            <div class="header-logo justify-center mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+                </svg>
+                <h1 class="text-2xl font-bold font-roboto">Real Estate Certification</h1>
+            </div>
+            <p class="text-gray-500 mb-8">Enter the examination access code to begin.</p>
             <div class="max-w-sm mx-auto">
-                <input type="password" id="password-input" class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Password">
-                <button id="login-btn" class="btn btn-primary w-full">Login</button>
-                <p id="error-message" class="text-red-500 mt-4 h-5"></p>
+                <input type="password" id="password-input" class="w-full p-3 border border-gray-300 rounded-md mb-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Access Code">
+                <button id="login-btn" class="btn btn-primary w-full">Begin</button>
+                <p id="error-message" class="text-red-600 mt-4 h-5 text-sm"></p>
             </div>
         </div>
 
         <!-- Home Screen -->
-        <div id="home-screen" class="card text-center hidden">
-            <h1 class="text-3xl font-bold text-gray-800 mb-4">Welcome!</h1>
-            <p class="text-gray-600 mb-8">Choose your preferred simulation mode.</p>
+        <div id="home-screen" class="card p-8 text-center hidden">
+            <h1 class="text-3xl font-bold font-roboto text-gray-800 mb-4">Welcome, Candidate</h1>
+            <p class="text-gray-600 mb-8">Select your preferred examination mode.</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <button onclick="startTest('veloce')" class="btn btn-primary flex-1">
-                    <span class="block text-lg">Quick Test</span>
+                    <span class="block text-lg">Practice Exam</span>
                     <span class="block text-sm font-normal">50 questions - 1 hour</span>
                 </button>
-                <button onclick="startTest('completo')" class="btn btn-secondary flex-1 border border-gray-300">
-                    <span class="block text-lg">Full Test</span>
+                <button onclick="startTest('completo')" class="btn btn-secondary flex-1">
+                    <span class="block text-lg">Full Exam</span>
                     <span class="block text-sm font-normal">100 questions - 2.5 hours</span>
                 </button>
             </div>
@@ -92,43 +117,51 @@
 
         <!-- Exam Screen -->
         <div id="exam-screen" class="card hidden">
-            <div class="flex justify-between items-center mb-6 border-b pb-4">
-                <h2 id="question-counter" class="text-xl font-semibold text-gray-700">Question 1 of 50</h2>
-                <div id="timer" class="text-2xl font-bold text-indigo-600 bg-indigo-100 px-4 py-2 rounded-lg">60:00</div>
+            <div class="p-6 border-b border-gray-200">
+                <div class="flex justify-between items-center">
+                    <div class="header-logo">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                           <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+                        </svg>
+                        <h2 class="text-xl font-bold font-roboto">Certification Exam</h2>
+                    </div>
+                    <div id="timer" class="text-2xl font-bold text-blue-600 bg-blue-100 px-4 py-2 rounded-md">60:00</div>
+                </div>
+                 <p id="question-counter" class="text-sm text-gray-500 mt-4">Question 1 of 50</p>
             </div>
             
-            <div class="mb-6">
-                <p id="question-text" class="text-lg text-gray-800 leading-relaxed"></p>
-            </div>
+            <div class="p-6">
+                <p id="question-text" class="text-lg text-gray-800 leading-relaxed mb-8"></p>
 
-            <div id="options-container" class="space-y-3 mb-8">
-                <!-- Options will be dynamically inserted here -->
-            </div>
+                <div id="options-container" class="space-y-4 mb-8">
+                    <!-- Options will be dynamically inserted here -->
+                </div>
 
-            <div class="flex justify-between items-center">
-                <button onclick="skipQuestion()" class="btn btn-secondary">Skip</button>
-                <button onclick="nextQuestion()" class="btn btn-primary">Next</button>
+                <div class="flex justify-between items-center border-t border-gray-200 pt-6">
+                    <button onclick="skipQuestion()" class="btn btn-secondary">Skip</button>
+                    <button onclick="nextQuestion()" class="btn btn-primary">Next</button>
+                </div>
             </div>
         </div>
 
         <!-- Results Screen -->
-        <div id="results-screen" class="card text-center hidden">
-            <h1 class="text-3xl font-bold text-gray-800 mb-4">Simulation Complete!</h1>
+        <div id="results-screen" class="card text-center p-8 hidden">
+            <h1 class="text-3xl font-bold font-roboto text-gray-800 mb-4">Examination Complete</h1>
             <div id="result-badge" class="mb-6">
                 <!-- Pass/Fail result will be inserted here -->
             </div>
-            <p class="text-gray-600 mb-2">Your score is:</p>
-            <p id="score" class="text-6xl font-bold text-indigo-600 mb-4"></p>
+            <p class="text-gray-500 mb-2">Your final score:</p>
+            <p id="score" class="text-6xl font-bold text-blue-600 mb-4"></p>
             <p id="score-details" class="text-gray-700 mb-8"></p>
 
             <div class="flex justify-center gap-4">
                 <button id="review-btn" onclick="toggleReview()" class="btn btn-secondary hidden">Review Incorrect Answers</button>
-                <button onclick="restart()" class="btn btn-primary">Try another test</button>
+                <button onclick="restart()" class="btn btn-primary">Start New Exam</button>
             </div>
 
             <div id="review-container" class="mt-8 text-left hidden">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">Review Your Answers</h2>
-                <div id="review-content" class="space-y-6 max-h-96 overflow-y-auto p-4 bg-gray-50 rounded-lg border">
+                <h2 class="text-2xl font-bold font-roboto text-gray-800 mb-4 text-center">Answer Review</h2>
+                <div id="review-content" class="space-y-6 max-h-96 overflow-y-auto p-4 bg-gray-50 rounded-md border">
                     <!-- Incorrect answers will be dynamically inserted here -->
                 </div>
             </div>
@@ -139,120 +172,232 @@
         // --- CONFIGURATION ---
         const CORRECT_PASSWORD = 'zaqw'; // Access password
 
-        // --- QUESTIONS DATABASE ---
-        // Ho integrato un numero molto maggiore di domande per garantire la varietà.
+        // --- COMPLETE QUESTIONS DATABASE ---
         const allQuestions = [
             // Block 1
             { question: "What is the primary purpose of a real estate license?", options: ["To guarantee sales success", "To regulate and protect the public in real estate transactions", "To increase property values", "To limit competition in the market"], answer: "To regulate and protect the public in real estate transactions" },
             { question: "Which of the following is NOT typically required to obtain a real estate license?", options: ["Completing pre-license education", "Passing a state exam", "Having a college degree", "Being at least 18 years old"], answer: "Having a college degree" },
-            { question: "A real estate salesperson can work independently without broker supervision.", options: ["True", "False"], answer: "False" },
+            { question: "True or False: A real estate salesperson can work independently without broker supervision.", options: ["True", "False"], answer: "False" },
             { question: "Which agency relationship requires the highest level of fiduciary duty?", options: ["Customer relationship", "Client relationship", "Transactional relationship", "Dual agency relationship"], answer: "Client relationship" },
-            { question: "Dual agency is legal in all states.", options: ["True", "False"], answer: "False" },
+            { question: "True or False: Dual agency is legal in all states.", options: ["True", "False"], answer: "False" },
             { question: "Which of the following is NOT a fiduciary duty?", options: ["Loyalty", "Disclosure", "Guarantee of sale", "Confidentiality"], answer: "Guarantee of sale" },
-            { question: "An agent must disclose known material defects to potential buyers.", options: ["True", "False"], answer: "True" },
+            { question: "True or False: An agent must disclose known material defects to potential buyers.", options: ["True", "False"], answer: "True" },
             { question: "Which listing type allows the seller to sell the property themselves without paying commission?", options: ["Exclusive right to sell", "Exclusive agency", "Open listing", "Net listing"], answer: "Exclusive agency" },
-            { question: "Net listings are illegal in most states.", options: ["True", "False"], answer: "True" },
+            { question: "True or False: Net listings are illegal in most states.", options: ["True", "False"], answer: "True" },
+            { question: "How long is a typical listing agreement valid?", options: ["30 days", "60 days", "90 days", "As specified in the contract"], answer: "As specified in the contract" },
+            { question: "True or False: A listing agent must market the property in the MLS.", options: ["True", "False"], answer: "False" },
             { question: "What is the purpose of the Multiple Listing Service (MLS)?", options: ["To set property prices", "To facilitate cooperation between brokers", "To replace real estate agents", "To provide legal advice"], answer: "To facilitate cooperation between brokers" },
+            { question: "Which of the following is a requirement for MLS participation?", options: ["Being a licensed real estate professional", "Paying membership fees", "Following MLS rules and regulations", "All of the above"], answer: "All of the above" },
+            { question: "True or False: All licensed agents have automatic access to the MLS.", options: ["True", "False"], answer: "False" },
             { question: "What is a CMA (Comparative Market Analysis)?", options: ["A formal appraisal", "An informal estimate of property value", "A marketing plan", "A legal document"], answer: "An informal estimate of property value" },
-            { question: "A CMA can be used in place of a formal appraisal for lending purposes.", options: ["True", "False"], answer: "False" },
+            { question: "True or False: A CMA can be used in place of a formal appraisal for lending purposes.", options: ["True", "False"], answer: "False" },
+            { question: "Which factors are most important when selecting comparable properties for a CMA?", options: ["Location, size, and age", "Price and availability", "Seller motivation", "Marketing time"], answer: "Location, size, and age" },
+            { question: "How does the principle of substitution affect property values?", options: ["Buyers will pay more for unique properties", "Buyers will pay no more than the cost of an equally desirable substitute", "Substitution has no effect on value", "Only new properties are affected"], answer: "Buyers will pay no more than the cost of an equally desirable substitute" },
+            { question: "True or False: The highest and best use of a property always generates the most income.", options: ["True", "False"], answer: "False" },
             { question: "What are the four elements of value?", options: ["Demand, utility, scarcity, transferability", "Location, size, age, condition", "Price, terms, condition, timing", "Supply, demand, cost, profit"], answer: "Demand, utility, scarcity, transferability" },
-            { question: "The highest and best use of a property always generates the most income.", options: ["True", "False"], answer: "False" },
             { question: "Which appraisal approach is most appropriate for unique properties?", options: ["Cost approach", "Sales comparison approach", "Income approach", "All approaches equally"], answer: "Cost approach" },
-            { question: "Depreciation only applies to buildings, not land.", options: ["True", "False"], answer: "True" },
+            { question: "True or False: Depreciation only applies to buildings, not land.", options: ["True", "False"], answer: "True" },
             { question: "What does 'arm's length transaction' mean?", options: ["A transaction between relatives", "A transaction between unrelated parties", "A transaction requiring legal representation", "A transaction involving multiple properties"], answer: "A transaction between unrelated parties" },
-            { question: "A property sold under duress represents fair market value.", options: ["True", "False"], answer: "False" },
+            { question: "True or False: A property sold under duress represents fair market value.", options: ["True", "False"], answer: "False" },
             { question: "What is the purpose of a property disclosure statement?", options: ["To set the selling price", "To inform buyers of known defects", "To guarantee the property condition", "To replace a professional inspection"], answer: "To inform buyers of known defects" },
+            { question: "Which of the following must typically be disclosed?", options: ["Previous deaths on the property", "Known structural problems", "Neighborhood demographic changes", "Future development plans"], answer: "Known structural problems" },
+            { question: "True or False: Stigmatized properties must be disclosed in all states.", options: ["True", "False"], answer: "False" },
             { question: "Which document provides constructive notice of ownership?", options: ["Purchase agreement", "Deed", "Title insurance policy", "Survey"], answer: "Deed" },
+            { question: "True or False: Recording a deed is required to transfer ownership.", options: ["True", "False"], answer: "False" },
             { question: "What is the purpose of title insurance?", options: ["To guarantee property value", "To protect against title defects", "To replace a title search", "To provide liability coverage"], answer: "To protect against title defects" },
-            { question: "Title insurance premiums are paid annually.", options: ["True", "False"], answer: "False" },
+            { question: "Which of the following would NOT be covered by standard title insurance?", options: ["Forgery in the chain of title", "Undisclosed heirs", "Environmental hazards", "Recording errors"], answer: "Environmental hazards" },
+            { question: "True or False: Title insurance premiums are paid annually.", options: ["True", "False"], answer: "False" },
+            { question: "What is an abstract of title?", options: ["A summary of all recorded documents affecting the property", "A guarantee of clear title", "A type of deed", "An appraisal method"], answer: "A summary of all recorded documents affecting the property" },
             { question: "Which deed provides the greatest protection to the grantee?", options: ["Quitclaim deed", "Special warranty deed", "General warranty deed", "Bargain and sale deed"], answer: "General warranty deed" },
-            { question: "A quitclaim deed guarantees that the grantor owns the property.", options: ["True", "False"], answer: "False" },
+            { question: "True or False: A quitclaim deed guarantees that the grantor owns the property.", options: ["True", "False"], answer: "False" },
+            { question: "What are the essential elements of a valid deed?", options: ["Grantor, grantee, consideration, legal description", "Price, terms, conditions, signatures", "Title insurance, survey, inspection, appraisal", "Buyer, seller, agent, lender"], answer: "Grantor, grantee, consideration, legal description" },
+            { question: "True or False: Joint tenants can sell their interest without consent from other owners.", options: ["True", "False"], answer: "True" },
             { question: "What happens to a joint tenant's interest when they die?", options: ["It passes to their heirs", "It transfers to surviving joint tenants", "It becomes part of their estate", "It reverts to the state"], answer: "It transfers to surviving joint tenants" },
+            { question: "What is tenancy by the entirety?", options: ["Ownership between unmarried couples", "Ownership between married couples", "Ownership by business partners", "Ownership by multiple investors"], answer: "Ownership between married couples" },
+            { question: "True or False: Tenants by the entirety can be forced to partition the property.", options: ["True", "False"], answer: "False" },
+            { question: "What is a life estate?", options: ["Ownership for the lifetime of a specified person", "A lease for life", "Ownership that passes to children", "A form of joint ownership"], answer: "Ownership for the lifetime of a specified person" },
+            { question: "What happens to a life estate when the life tenant dies?", options: ["It passes to heirs", "It reverts to the remainderman", "It becomes fee simple", "It expires"], answer: "It reverts to the remainderman" },
+            { question: "True or False: A life tenant can mortgage the property without restriction.", options: ["True", "False"], answer: "False" },
             { question: "What is an easement?", options: ["A type of ownership", "A right to use another's property", "A form of lease", "A property restriction"], answer: "A right to use another's property" },
+            { question: "Which type of easement is created by open and notorious use?", options: ["Express easement", "Implied easement", "Prescriptive easement", "Easement by necessity"], answer: "Prescriptive easement" },
+            { question: "True or False: Easements always reduce property value.", options: ["True", "False"], answer: "False" },
             { question: "What is eminent domain?", options: ["The right to exclude others from property", "Government's right to take private property for public use", "The right to lease property", "The right to sell property"], answer: "Government's right to take private property for public use" },
-            { question: "Property owners must be compensated when government takes their property through eminent domain.", options: ["True", "False"], answer: "True" },
+            { question: "True or False: Property owners must be compensated when government takes their property through eminent domain.", options: ["True", "False"], answer: "True" },
+            { question: "What are police powers in real estate?", options: ["Law enforcement authority", "Government's right to regulate land use", "Property owner's rights", "Broker's authority"], answer: "Government's right to regulate land use" },
             { question: "What is escheat?", options: ["Property transfer to government when owner dies without heirs", "Government taking for public use", "Property tax collection", "Zoning regulation"], answer: "Property transfer to government when owner dies without heirs" },
+            { question: "True or False: Taxation is considered a limitation on property ownership.", options: ["True", "False"], answer: "True" },
+            { question: "What happens if property taxes are not paid?", options: ["The property is condemned", "The owner loses police powers", "The property may be sold at tax sale", "Nothing happens"], answer: "The property may be sold at tax sale" },
             { question: "Which of the following is considered real property?", options: ["Furniture", "Trade fixtures", "Built-in appliances", "Clothing"], answer: "Built-in appliances" },
+            { question: "True or False: Items that are permanently attached to real property become fixtures.", options: ["True", "False"], answer: "True" },
+            { question: "What is the legal test for determining if an item is a fixture?", options: ["Method of attachment, intention, relationship of parties", "Size, weight, and value", "Age and condition", "Original purchase price"], answer: "Method of attachment, intention, relationship of parties" },
+            { question: "True or False: Emblements (growing crops) are considered personal property.", options: ["True", "False"], answer: "True" },
+            { question: "True or False: Property owners have unlimited rights to use their property.", options: ["True", "False"], answer: "False" },
             { question: "What is a fee simple absolute estate?", options: ["The highest form of property ownership", "A leasehold interest", "A life estate", "An easement"], answer: "The highest form of property ownership" },
+            { question: "True or False: All real estate ownership involves some form of estate.", options: ["True", "False"], answer: "True" },
+            { question: "What is a leasehold estate?", options: ["Ownership interest in property", "Right to possess property for a specified time", "Right to buy property", "Right to sell property"], answer: "Right to possess property for a specified time" },
+            { question: "Which leasehold estate has no specific termination date?", options: ["Estate for years", "Periodic tenancy", "Tenancy at will", "Tenancy at sufferance"], answer: "Tenancy at will" },
+            { question: "True or False: A month-to-month lease is a periodic tenancy.", options: ["True", "False"], answer: "True" },
+            { question: "What notice is typically required to terminate a month-to-month lease?", options: ["No notice required", "30 days notice", "60 days notice", "90 days notice"], answer: "30 days notice" },
+            { question: "What rights does a landlord have when dealing with a holdover tenant?", options: ["Evict immediately", "Accept rent and create new tenancy or evict", "Increase rent automatically", "Change lease terms unilaterally"], answer: "Accept rent and create new tenancy or evict" },
+            { question: "True or False: Oral leases are always invalid.", options: ["True", "False"], answer: "False" },
             { question: "Under the Statute of Frauds, which leases must be in writing?", options: ["All leases", "Leases over one year", "Month-to-month leases", "Commercial leases only"], answer: "Leases over one year" },
-            { question: "Security deposits can be used for normal wear and tear.", options: ["True", "False"], answer: "False" },
+            { question: "True or False: Tenants can withhold rent for any reason.", options: ["True", "False"], answer: "False" },
+            { question: "What is the warranty of habitability?", options: ["Landlord's guarantee that premises are livable", "Tenant's promise to maintain property", "Insurance requirement", "Building code compliance"], answer: "Landlord's guarantee that premises are livable" },
+            { question: "True or False: Security deposits can be used for normal wear and tear.", options: ["True", "False"], answer: "False" },
+            { question: "What is an assignment of lease?", options: ["Transfer of part of lease rights", "Transfer of all lease rights", "Lease renewal", "Lease termination"], answer: "Transfer of all lease rights" },
+            { question: "True or False: Tenants can always assign or sublet without landlord consent.", options: ["True", "False"], answer: "False" },
+            { question: "What is a ground lease?", options: ["Lease of land only", "Lease of ground floor only", "Short-term lease", "Agricultural lease"], answer: "Lease of land only" },
+            { question: "True or False: Ground leases are typically short-term arrangements.", options: ["True", "False"], answer: "False" },
             { question: "What is a sale-leaseback transaction?", options: ["Selling property then leasing it back", "Buying property through lease payments", "Converting lease to ownership", "Terminating lease early"], answer: "Selling property then leasing it back" },
+            { question: "True or False: Sale-leaseback arrangements are only used for residential properties.", options: ["True", "False"], answer: "False" },
             
             // Block 2
+            { question: "What is the primary difference between a broker and a salesperson?", options: ["Brokers can work independently while salespersons cannot", "Brokers earn higher commissions than salespersons", "Salespersons need more education than brokers", "There is no difference between the two"], answer: "Brokers can work independently while salespersons cannot" },
+            { question: "True or False: A real estate agent can represent both buyer and seller in the same transaction without disclosure.", options: ["True", "False"], answer: "False" },
             { question: "Which of the following is NOT one of the fiduciary duties remembered by O.L.D. C.A.R.?", options: ["Obedience", "Loyalty", "Guarantee", "Confidentiality"], answer: "Guarantee" },
-            { question: "An agent's fiduciary duty of confidentiality ends when the listing expires.", options: ["True", "False"], answer: "False" },
+            { question: "True or False: An agent's fiduciary duty of confidentiality ends when the listing expires.", options: ["True", "False"], answer: "False" },
+            { question: "What is dual agency?", options: ["When an agent works for two different brokerages", "When one agent represents both buyer and seller", "When two agents work together on one transaction", "When an agent has two licenses"], answer: "When one agent represents both buyer and seller" },
+            { question: "True or False: Dual agency is legal in all states with proper disclosure.", options: ["True", "False"], answer: "False" },
             { question: "Which duty requires an agent to follow all lawful instructions from their client?", options: ["Loyalty", "Disclosure", "Obedience", "Accounting"], answer: "Obedience" },
-            { question: "An agent must disclose all material facts to all parties in a transaction.", options: ["True", "False"], answer: "True" },
+            { question: "True or False: An agent can share a buyer's confidential financial information with the seller to help close the deal.", options: ["True", "False"], answer: "False" },
+            { question: "Which of the following creates an agency relationship?", options: ["Showing properties to a buyer", "A signed listing agreement", "Giving market information", "Opening doors during showings"], answer: "A signed listing agreement" },
+            { question: "True or False: Subagency relationships are still common in modern real estate practice.", options: ["True", "False"], answer: "False" },
+            { question: "Which agency relationship provides the highest level of service?", options: ["Customer relationship", "Client relationship", "Transactional relationship", "Subagency relationship"], answer: "Client relationship" },
+            { question: "True or False: An agent must disclose all material facts to all parties in a transaction.", options: ["True", "False"], answer: "True" },
+            { question: "What is a material fact in real estate?", options: ["Any fact about the property", "Information that would influence a reasonable person's decision", "Only structural defects", "Information required by law"], answer: "Information that would influence a reasonable person's decision" },
+            { question: "True or False: An agent's duty of loyalty means they must get the highest possible price for sellers.", options: ["True", "False"], answer: "False" },
+            { question: "Which document creates a listing agency relationship?", options: ["Purchase agreement", "Agency disclosure form", "Listing agreement", "MLS entry"], answer: "Listing agreement" },
+            { question: "True or False: Designated agency allows different agents in the same brokerage to represent buyer and seller separately.", options: ["True", "False"], answer: "True" },
             { question: "When must agency relationships be disclosed to parties in a transaction?", options: ["At first substantial contact", "Before writing an offer", "At closing", "Only if asked"], answer: "At first substantial contact" },
-            { question: "What does 'procuring cause' mean in real estate?", options: ["The reason the property was listed", "The agent whose efforts were the primary reason a transaction occurred", "The legal cause for contract termination", "The primary motivation of the buyer"], answer: "The agent whose efforts were the primary reason a transaction occurred" },
+            { question: "True or False: An agent can never purchase a property listed by their own brokerage.", options: ["True", "False"], answer: "False" },
+            { question: "What is a buyer representation agreement?", options: ["A contract between buyer and seller", "An agreement between buyer and buyer's agent", "A form required by law", "A disclosure statement"], answer: "An agreement between buyer and buyer's agent" },
+            { question: "True or False: Oral agency agreements are valid in most states.", options: ["True", "False"], answer: "False" },
+            { question: "Which of the following terminates an agency relationship?", options: ["Death of the principal", "Completion of the purpose", "Mutual agreement", "All of the above"], answer: "All of the above" },
+            { question: "True or False: An agent can represent competing buyers for the same property.", options: ["True", "False"], answer: "False" },
             { question: "Which covenant in a general warranty deed protects against unknown encumbrances?", options: ["Covenant of seisin", "Covenant against encumbrances", "Covenant of quiet enjoyment", "Covenant of warranty"], answer: "Covenant against encumbrances" },
-            { question: "A deed must be recorded to be valid between grantor and grantee.", options: ["True", "False"], answer: "False" },
-            { question: "What is marketable title?", options: ["Title that is guaranteed to increase in value", "Title that is reasonably free from defects and acceptable to a prudent buyer", "Title held by a famous person", "A new form of digital title"], answer: "Title that is reasonably free from defects and acceptable to a prudent buyer" },
-            { question: "A property sells for $400,000 with a 6% commission split equally between listing and selling agents. If the selling agent has a 80/20 split with their broker, what does the agent receive?", options: ["$12,000", "$9,600", "$24,000", "$4,800"], answer: "$9,600" },
+            { question: "True or False: A special warranty deed protects against all title defects throughout the property's history.", options: ["True", "False"], answer: "False" },
+            { question: "Which deed provides the least protection to the grantee?", options: ["General warranty deed", "Special warranty deed", "Quitclaim deed", "Bargain and sale deed"], answer: "Quitclaim deed" },
+            { question: "True or False: A quitclaim deed guarantees that the grantor has good title to convey.", options: ["True", "False"], answer: "False" },
+            { question: "True or False: Both grantor and grantee must sign a deed for it to be valid.", options: ["True", "False"], answer: "False" },
+            { question: "What is the difference between delivery and recording of a deed?", options: ["Delivery transfers title; recording provides notice", "Recording transfers title; delivery provides notice", "Both transfer title simultaneously", "Neither transfers title"], answer: "Delivery transfers title; recording provides notice" },
+            { question: "True or False: A deed must be recorded to be valid between grantor and grantee.", options: ["True", "False"], answer: "False" },
+            { question: "Which of the following is required for recording a deed?", options: ["Notarization or witnessing", "Payment of recording fees", "Proper formatting", "All of the above"], answer: "All of the above" },
+            { question: "True or False: Title insurance premiums are paid monthly like other insurance policies.", options: ["True", "False"], answer: "False" },
+            { question: "Which title insurance policy protects the mortgage lender?", options: ["Owner's policy", "Lender's policy", "Both policies", "Neither policy"], answer: "Lender's policy" },
+            { question: "True or False: Lender's title insurance coverage decreases as the mortgage is paid down.", options: ["True", "False"], answer: "True" },
+            { question: "True or False: Standard exceptions in title insurance policies cannot be removed.", options: ["True", "False"], answer: "False" },
+            { question: "What is the purpose of Schedule B in a title commitment?", options: ["Lists basic transaction information", "Shows exceptions to coverage", "Provides property description", "Contains premium information"], answer: "Shows exceptions to coverage" },
+            { question: "True or False: Actual notice is more legally significant than constructive notice.", options: ["True", "False"], answer: "False" },
+            { question: "What is an abstract of title?", options: ["A summary of all recorded documents affecting the property", "A guarantee of clear title", "A type of title insurance", "A deed restriction"], answer: "A summary of all recorded documents affecting the property" },
+            { question: "True or False: A chain of title shows the complete ownership history of a property.", options: ["True", "False"], answer: "True" },
+            { question: "Which of the following helps establish constructive notice?", options: ["Recording documents in public records", "Telling neighbors about ownership", "Publishing in newspapers", "Posting signs on the property"], answer: "Recording documents in public records" },
+            { question: "True or False: Inquiry notice requires actual investigation of suspicious circumstances.", options: ["True", "False"], answer: "True" },
+            { question: "What is marketable title?", options: ["Title guaranteed to increase in value", "Title that is reasonably free from defects and acceptable to a prudent buyer", "Title held by a famous person", "A new form of digital title"], answer: "Title that is reasonably free from defects and acceptable to a prudent buyer" },
+            { question: "Which of the following would likely make title unmarketable?", options: ["A recorded easement for utilities", "Current year's property taxes", "An unreleased mortgage lien", "Reasonable deed restrictions"], answer: "An unreleased mortgage lien" },
+            { question: "True or False: Buyers must accept title with minor encumbrances.", options: ["True", "False"], answer: "False" },
+            { question: "True or False: The recording system operates on a 'first in time, first in right' principle.", options: ["True", "False"], answer: "True" },
+            { question: "True or False: Property taxes are based on the property's market value.", options: ["True", "False"], answer: "False" },
+            { question: "True or False: Real estate commissions are regulated by state law.", options: ["True", "False"], answer: "False" },
+            { question: "What is the loan-to-value ratio on a $300,000 home with a $240,000 mortgage?", options: ["75%", "80%", "85%", "90%"], answer: "80%" },
             { question: "A buyer pays 2 discount points on a $250,000 loan. How much do the points cost?", options: ["$2,500", "$5,000", "$7,500", "$10,000"], answer: "$5,000" },
+            { question: "True or False: Each discount point typically reduces the interest rate by approximately 0.25%.", options: ["True", "False"], answer: "True" },
+            { question: "A property has monthly rent of $2,000 and sells for $300,000. What is the gross rent multiplier?", options: ["120", "150", "180", "200"], answer: "150" },
+            { question: "True or False: The gross rent multiplier method is most accurate for large commercial properties.", options: ["True", "False"], answer: "False" },
+            { question: "What does 'amortization' mean in real estate finance?", options: ["The increase in property value", "The systematic repayment of a loan", "The process of obtaining a mortgage", "The calculation of interest rates"], answer: "The systematic repayment of a loan" },
+            { question: "True or False: In the early years of an amortized loan, most of the payment goes toward principal.", options: ["True", "False"], answer: "False" },
             { question: "When is PMI typically required on conventional loans?", options: ["When LTV exceeds 90%", "When LTV exceeds 85%", "When LTV exceeds 80%", "When LTV exceeds 75%"], answer: "When LTV exceeds 80%" },
+            { question: "True or False: PMI can be cancelled when the loan balance reaches 78% of the original property value.", options: ["True", "False"], answer: "True" },
             { question: "Which loan program allows 100% financing with no down payment?", options: ["FHA", "VA", "Conventional", "USDA"], answer: "VA" },
+            { question: "True or False: VA loans require mortgage insurance premiums.", options: ["True", "False"], answer: "False" },
+            { question: "Which government agency insures FHA loans?", options: ["Federal Housing Administration", "Department of Veterans Affairs", "U.S. Department of Agriculture", "Federal National Mortgage Association"], answer: "Federal Housing Administration" },
+            { question: "True or False: Government-backed loans typically have more flexible underwriting standards than conventional loans.", options: ["True", "False"], answer: "True" },
+            { question: "What is the primary mortgage market?", options: ["Where existing mortgages are bought and sold", "Where new mortgages are originated", "Where foreclosed properties are sold", "Where mortgage rates are set"], answer: "Where new mortgages are originated" },
+            { question: "True or False: The secondary mortgage market provides liquidity to primary lenders.", options: ["True", "False"], answer: "True" },
             { question: "Which RESPA section prohibits kickbacks and referral fees?", options: ["Section 6", "Section 8", "Section 10", "Section 12"], answer: "Section 8" },
+            { question: "True or False: Real estate agents can accept referral fees from title companies under certain circumstances.", options: ["True", "False"], answer: "False" },
             { question: "What does APR stand for and represent?", options: ["Annual Percentage Rate - the true cost of credit", "Adjusted Payment Rate - the modified payment amount", "Average Principal Rate - the mean interest charged", "Actual Purchase Rate - the final loan rate"], answer: "Annual Percentage Rate - the true cost of credit" },
-            { question: "What is redlining in the context of fair housing?", options: ["Drawing red lines on a map to indicate sales territories", "The illegal practice of refusing services to entire neighborhoods based on racial composition", "A marketing technique for luxury properties", "A type of interior design"], answer: "The illegal practice of refusing services to entire neighborhoods based on racial composition" },
+            { question: "True or False: The APR is typically higher than the note rate on a mortgage.", options: ["True", "False"], answer: "True" },
+            { question: "How many days before closing must the Closing Disclosure be provided?", options: ["1 business day", "3 business days", "5 business days", "7 business days"], answer: "3 business days" },
+            { question: "True or False: The Loan Estimate must be provided within 3 business days of loan application.", options: ["True", "False"], answer: "True" },
+            { question: "Which document replaced the HUD-1 Settlement Statement?", options: ["Loan Estimate", "Closing Disclosure", "Both A and B", "Neither A nor B"], answer: "Closing Disclosure" },
+            { question: "True or False: TRID rules apply to all real estate transactions.", options: ["True", "False"], answer: "False" },
+            { question: "What is redlining in the context of fair housing?", options: ["Refusing services to entire neighborhoods based on racial composition", "Steering clients to specific areas", "Blockbusting practices", "Discriminatory advertising"], answer: "Refusing services to entire neighborhoods based on racial composition" },
+            { question: "True or False: The Fair Housing Act applies to all residential property without exceptions.", options: ["True", "False"], answer: "False" },
 
             // Block 3
+            { question: "True or False: A life estate terminates automatically upon the death of the life tenant.", options: ["True", "False"], answer: "True" },
+            { question: "Which estate provides ownership for an indefinite period?", options: ["Life estate", "Estate for years", "Fee simple absolute", "Estate at will"], answer: "Fee simple absolute" },
+            { question: "What happens to property when a joint tenant dies?", options: ["It passes to their heirs", "It transfers to surviving joint tenants", "It becomes part of their estate", "It reverts to the state"], answer: "It transfers to surviving joint tenants" },
+            { question: "True or False: Tenants in common must have equal ownership interests.", options: ["True", "False"], answer: "False" },
             { question: "What are the four unities required for joint tenancy (P.I.T.T.)?", options: ["Possession, Interest, Title, Trust", "Possession, Interest, Time, Title", "Property, Interest, Time, Trust", "Price, Interest, Time, Title"], answer: "Possession, Interest, Time, Title" },
+            { question: "Which form of ownership is available only to married couples in some states?", options: ["Joint tenancy", "Tenancy in common", "Tenancy by the entirety", "Community property"], answer: "Tenancy by the entirety" },
+            { question: "True or False: In community property states, all property acquired during marriage is owned equally by both spouses.", options: ["True", "False"], answer: "False" },
             { question: "Which leasehold estate has a definite beginning and ending date?", options: ["Estate for years", "Periodic tenancy", "Estate at will", "Estate at sufferance"], answer: "Estate for years" },
+            { question: "True or False: A month-to-month lease is an example of periodic tenancy.", options: ["True", "False"], answer: "True" },
+            { question: "Which leasehold estate exists when a tenant remains after lease expiration without permission?", options: ["Estate for years", "Periodic tenancy", "Estate at will", "Estate at sufferance"], answer: "Estate at sufferance" },
+            { question: "True or False: Landlords must accept holdover tenants as new periodic tenants.", options: ["True", "False"], answer: "False" },
             { question: "What is constructive eviction?", options: ["A legal process to formally evict a tenant", "When a tenant is physically removed by the landlord", "When landlord's actions make property uninhabitable, forcing tenant to leave", "When a tenant evicts the landlord"], answer: "When landlord's actions make property uninhabitable, forcing tenant to leave" },
+            { question: "Under what circumstances can a tenant legally withhold rent?", options: ["When they don't like the property", "When the landlord breaches the warranty of habitability", "When property taxes increase", "Tenants can never withhold rent"], answer: "When the landlord breaches the warranty of habitability" },
+            { question: "True or False: Security deposits can be used by landlords for normal wear and tear.", options: ["True", "False"], answer: "False" },
+            { question: "True or False: Tenants always have the right to assign or sublet without landlord consent.", options: ["True", "False"], answer: "False" },
             { question: "Which of the following is NOT a protected class under federal fair housing law?", options: ["Race", "Religion", "Sexual orientation", "Familial status"], answer: "Sexual orientation" },
+            { question: "True or False: The Civil Rights Act of 1866 prohibits racial discrimination in all property transactions without exception.", options: ["True", "False"], answer: "True" },
             { question: "Which practice involves inducing property owners to sell by suggesting that minority groups entering the area will lower property values?", options: ["Steering", "Blockbusting", "Redlining", "Price fixing"], answer: "Blockbusting" },
-            { question: "The Americans with Disabilities Act (ADA) applies to residential housing transactions.", options: ["True", "False"], answer: "False" },
+            { question: "True or False: Redlining refers to the illegal practice of refusing services to entire neighborhoods based on racial composition.", options: ["True", "False"], answer: "True" },
+            { question: "Under the Housing for Older Persons Act (HOPA), what percentage of units must have at least one resident 55 or older in a 55+ community?", options: ["50%", "75%", "80%", "100%"], answer: "80%" },
+            { question: "True or False: The 'Mrs. Murphy' exemption allows discrimination in owner-occupied buildings with four or fewer units.", options: ["True", "False"], answer: "True" },
+            { question: "Which federal law requires disclosure of lead-based paint hazards?", options: ["Fair Housing Act", "Americans with Disabilities Act", "Lead-Based Paint Poisoning Prevention Act", "Environmental Protection Act"], answer: "Lead-Based Paint Poisoning Prevention Act" },
+            { question: "True or False: The Americans with Disabilities Act (ADA) applies to residential housing transactions.", options: ["True", "False"], answer: "False" },
+            { question: "True or False: Radon disclosure is required in all states.", options: ["True", "False"], answer: "False" },
+            { question: "Which of the following is considered a hazardous environmental condition?", options: ["Asbestos", "Lead paint", "Underground storage tanks", "All of the above"], answer: "All of the above" },
+            { question: "True or False: Sellers are required to disclose all known material defects to buyers.", options: ["True", "False"], answer: "True" },
+            { question: "True or False: 'As-is' clauses in contracts eliminate all seller disclosure obligations.", options: ["True", "False"], answer: "False" },
+            { question: "Which of the following must typically be disclosed about a property?", options: ["That a death occurred on the premises", "That the seller has AIDS", "Known structural defects", "The ethnic composition of the neighborhood"], answer: "Known structural defects" },
+            { question: "True or False: Real estate agents have a duty to investigate and discover all property defects.", options: ["True", "False"], answer: "False" },
+            { question: "What is the statute of limitations for most real estate contract disputes?", options: ["1 year", "2 years", "4 years", "6 years"], answer: "4 years" },
+            { question: "True or False: Parol evidence can be used to modify the terms of a written real estate contract.", options: ["True", "False"], answer: "False" },
             { question: "What is specific performance in contract law?", options: ["A remedy requiring a party to pay damages", "A remedy requiring the breaching party to perform exactly as contracted", "A court order to perform a specific act of community service", "The act of performing a contract on time"], answer: "A remedy requiring the breaching party to perform exactly as contracted" },
+            { question: "Which remedy forces the completion of a real estate contract as agreed?", options: ["Monetary damages", "Specific performance", "Rescission", "Reformation"], answer: "Specific performance" },
+            { question: "True or False: Buyers can always obtain specific performance for breach of a real estate contract.", options: ["True", "False"], answer: "False" },
+            { question: "Under what circumstances might a court reform a contract?", options: ["When one party changes their mind", "When there was a mutual mistake in the written terms", "When market conditions change", "Courts cannot reform contracts"], answer: "When there was a mutual mistake in the written terms" },
+            { question: "True or False: Liquidated damages clauses specify the amount of damages in advance.", options: ["True", "False"], answer: "True" },
             { question: "What is the difference between void and voidable contracts?", options: ["There is no difference", "Void contracts are illegal, voidable contracts are not", "Void contracts have no legal effect; voidable contracts can be canceled by one party", "Void contracts are verbal, voidable contracts are written"], answer: "Void contracts have no legal effect; voidable contracts can be canceled by one party" },
-            { question: "One acre contains 43,560 square feet.", options: ["True", "False"], answer: "True" },
+            { question: "Which of the following makes a contract voidable?", options: ["Fraud or misrepresentation", "Duress or undue influence", "Mistake", "All of the above"], answer: "All of the above" },
+            { question: "True or False: One acre contains 43,560 square feet.", options: ["True", "False"], answer: "True" },
+            { question: "What is the front footage of a lot that is 180 feet deep with 25,200 square feet total area?", options: ["120 feet", "140 feet", "160 feet", "180 feet"], answer: "140 feet" },
+            { question: "True or False: To convert square feet to acres, divide by 43,560.", options: ["True", "False"], answer: "True" },
             { question: "What does a mill represent in property taxation?", options: ["$1 per $100 of assessed value", "$1 per $1,000 of assessed value", "$10 per $1,000 of assessed value", "1% of assessed value"], answer: "$1 per $1,000 of assessed value" },
+            { question: "True or False: Property taxes are based on market value in all jurisdictions.", options: ["True", "False"], answer: "False" },
+            { question: "A rental property generates $36,000 annual gross income and sells for $400,000. What is the gross income multiplier?", options: ["9.0", "10.5", "11.1", "12.0"], answer: "11.1" },
+            { question: "True or False: Cap rates and property values are inversely related.", options: ["True", "False"], answer: "True" },
             { question: "What is the formula for calculating capitalization rate?", options: ["Property Value / NOI", "NOI / Property Value", "Gross Income / Property Value", "NOI / Gross Income"], answer: "NOI / Property Value" },
-            { question: "Mortgage payments are included in calculating NOI.", options: ["True", "False"], answer: "False" },
+            { question: "An apartment building has a potential gross income of $100,000, 8% vacancy rate, and operating expenses of $40,000. What is the NOI?", options: ["$52,000", "$60,000", "$68,000", "$92,000"], answer: "$52,000" },
+            { question: "True or False: Mortgage payments are included in calculating NOI.", options: ["True", "False"], answer: "False" },
+            { question: "True or False: Amortization schedules show how loan payments are allocated between principal and interest over time.", options: ["True", "False"], answer: "True" },
+            { question: "How much interest is paid in the first month on a $200,000 loan at 6% annual interest?", options: ["$1,000", "$1,200", "$10,000", "$12,000"], answer: "$1,000" },
+            { question: "True or False: Extra principal payments reduce the total interest paid over the life of a loan.", options: ["True", "False"], answer: "True" },
             { question: "What is an adjustable rate mortgage (ARM)?", options: ["A mortgage with a fixed interest rate for the entire term", "A mortgage with interest rates that change periodically based on market conditions", "A loan for purchasing adjustable furniture", "A government-insured mortgage"], answer: "A mortgage with interest rates that change periodically based on market conditions" },
-            { question: "A 5/1 ARM has a fixed rate for 5 years, then adjusts annually.", options: ["True", "False"], answer: "True" },
+            { question: "True or False: ARM interest rates are tied to market indices like SOFR or Treasury rates.", options: ["True", "False"], answer: "True" },
+            { question: "What is the purpose of rate caps in ARM loans?", options: ["To protect borrowers from excessive rate increases", "To guarantee a fixed payment", "To increase lender profits", "To comply with federal law"], answer: "To protect borrowers from excessive rate increases" },
+            { question: "Which ARM feature limits how much the rate can increase at each adjustment period?", options: ["Initial cap", "Periodic cap", "Lifetime cap", "Payment cap"], answer: "Periodic cap" },
+            { question: "True or False: A 5/1 ARM has a fixed rate for 5 years, then adjusts annually.", options: ["True", "False"], answer: "True" },
+            { question: "If an ARM has an index rate of 3% and a margin of 2.5%, what is the fully indexed rate?", options: ["0.5%", "2.5%", "3.0%", "5.5%"], answer: "5.5%" },
+            { question: "True or False: ARM loans typically start with lower rates than fixed-rate mortgages.", options: ["True", "False"], answer: "True" },
+            { question: "When might a borrower choose an ARM over a fixed-rate mortgage?", options: ["When rates are expected to decline", "When they plan to sell within a few years", "When they want to qualify for a larger loan amount", "All of the above"], answer: "All of the above" },
+            { question: "True or False: Real estate brokers are responsible for supervising all activities of their affiliated salespersons.", options: ["True", "False"], answer: "True" },
+            { question: "Under what circumstances can a broker be held liable for a salesperson's actions?", options: ["When the salesperson acts within the scope of their authority", "When the broker knew or should have known of misconduct", "When the broker fails to properly supervise", "All of the above"], answer: "All of the above" },
+            { question: "True or False: Independent contractor agreements eliminate all broker liability for salesperson actions.", options: ["True", "False"], answer: "False" },
+            { question: "True or False: Real estate agents classified as independent contractors can set their own work schedules.", options: ["True", "False"], answer: "True" },
+            { question: "Which form of business organization provides the most personal liability protection?", options: ["Sole proprietorship", "Partnership", "Corporation", "They all provide equal protection"], answer: "Corporation" },
+            { question: "True or False: Professional liability insurance (E&O) covers intentional misconduct by real estate agents.", options: ["True", "False"], answer: "False" },
             { question: "What is the purpose of errors and omissions (E&O) insurance?", options: ["To protect against claims arising from professional negligence or mistakes", "To cover property damage", "To insure against employee theft", "To provide health insurance for agents"], answer: "To protect against claims arising from professional negligence or mistakes" },
-            
-            // Block 4
-            { question: "What is a variance in zoning law?", options: ["A change in the master plan", "Permission to use property in a way that differs from zoning requirements due to unique hardship", "A temporary permit for construction", "A type of property tax"], answer: "Permission to use property in a way that differs from zoning requirements due to unique hardship" },
-            { question: "Which government power allows taking private property for public use?", options: ["Police power", "Eminent domain", "Taxation", "Escheat"], answer: "Eminent domain" },
-            { question: "Private deed restrictions can be more restrictive than public zoning ordinances.", options: ["True", "False"], answer: "True" },
-            { question: "What is an easement appurtenant?", options: ["An easement that benefits a utility company", "An easement that is personal and not tied to land", "An easement that benefits a specific parcel of land (dominant tenement)", "An easement created by court order"], answer: "An easement that benefits a specific parcel of land (dominant tenement)" },
-            { question: "Utility easements are typically easements in gross.", options: ["True", "False"], answer: "True" },
-            { question: "In the cost approach, what does 'reproduction cost' mean?", options: ["The cost to build a similar property with modern materials", "The cost to build an exact replica using identical materials and methods", "The original cost of the property", "The market value of the property"], answer: "The cost to build an exact replica using identical materials and methods" },
-            { question: "Which type of depreciation results from factors outside the property boundaries?", options: ["Physical deterioration", "Functional obsolescence", "External obsolescence", "Economic depreciation"], answer: "External obsolescence" },
-            { question: "Land never depreciates in the cost approach to value.", options: ["True", "False"], answer: "True" },
-            { question: "What is reconciliation in the appraisal process?", options: ["The process of averaging the values from the three approaches", "The process of weighing different value indications to arrive at a final estimate", "A meeting between the appraiser and the borrower", "The final step in getting an appraisal license"], answer: "The process of weighing different value indications to arrive at a final estimate" },
-            { question: "In a land contract (contract for deed), who holds legal title during the payment period?", options: ["The buyer (vendee)", "The seller (vendor)", "A neutral third party", "Both parties jointly"], answer: "The seller (vendor)" },
-            { question: "A counteroffer rejects the original offer and creates a new one.", options: ["True", "False"], answer: "True" },
-            { question: "What is the purpose of earnest money in a real estate transaction?", options: ["To pay the real estate agent's commission", "To demonstrate buyer's serious intent and provide some security to the seller", "It is a mandatory federal fee", "To cover the cost of the appraisal"], answer: "To demonstrate buyer's serious intent and provide some security to the seller" },
-            { question: "What is a contingency clause in a real estate contract?", options: ["A clause that details the agent's commission", "A condition that must be satisfied for the contract to be binding", "A section outlining the property's history", "A penalty for backing out of the contract"], answer: "A condition that must be satisfied for the contract to be binding" },
-            { question: "Which professional can provide formal appraisals for mortgage lending purposes?", options: ["Real estate agents", "Real estate brokers", "Licensed or certified appraisers", "Anyone with real estate experience"], answer: "Licensed or certified appraisers" },
-            { question: "What is the purpose of real estate licensing laws?", options: ["To protect the public by ensuring real estate professionals meet minimum competency standards", "To limit the number of agents in the market", "To generate revenue for the state", "To ensure all agents make a minimum income"], answer: "To protect the public by ensuring real estate professionals meet minimum competency standards" },
-            
-            // Block 5
-            { question: "What is the maximum penalty for a first-time fair housing violation?", options: ["$10,000", "$16,000", "$37,000", "$65,000"], answer: "$16,000" },
-            { question: "Service animals are exempt from 'no pets' policies in rental housing.", options: ["True", "False"], answer: "True" },
-            { question: "Which agency enforces federal fair housing laws?", options: ["Federal Trade Commission", "Department of Housing and Urban Development", "Equal Employment Opportunity Commission", "Department of Justice"], answer: "Department of Housing and Urban Development" },
-            { question: "Fair housing complaints must be filed within one year of the alleged violation.", options: ["True", "False"], answer: "True" },
-            { question: "What is the closing process also known as?", options: ["Escrow", "Settlement", "Both A and B", "Neither A nor B"], answer: "Both A and B" },
-            { question: "What is the purpose of the final walkthrough?", options: ["To conduct a home inspection", "To verify property condition hasn't changed", "To determine final purchase price", "To obtain keys from sellers"], answer: "To verify property condition hasn't changed" },
-            { question: "When must the Closing Disclosure be provided to borrowers?", options: ["At least one business day before closing", "At least three business days before closing", "At least five business days before closing", "On the day of closing"], answer: "At least three business days before closing" },
-            { question: "Cash transactions are subject to TRID disclosure requirements.", options: ["True", "False"], answer: "False" },
-            
-            // Block 6
-            { question: "How many sections are in a township?", options: ["24", "36", "48", "64"], answer: "36" },
-            { question: "A section contains how many square miles?", options: ["1 square mile", "2 square miles", "4 square miles", "6 square miles"], answer: "1 square mile" },
-            { question: "Which legal description method is most commonly used for new subdivisions?", options: ["Metes and bounds", "Rectangular survey", "Lot and block", "Any method can be used"], answer: "Lot and block" },
-            { question: "Street addresses are sufficient legal descriptions for deed purposes.", options: ["True", "False"], answer: "False" },
-            { question: "Tax liens have priority over mortgage liens.", options: ["True", "False"], answer: "True" },
-            { question: "Which type of depreciation is always incurable?", options: ["Physical deterioration", "Functional obsolescence", "External obsolescence", "None are always incurable"], answer: "External obsolescence" },
-            { question: "What is a broker price opinion (BPO)?", options: ["A formal appraisal of a property", "A real estate professional's opinion of property value, less formal than an appraisal", "The price a broker thinks a property should be listed at", "A binding offer price from a broker"], answer: "A real estate professional's opinion of property value, less formal than an appraisal" },
-            { question: "What is a short sale in real estate?", options: ["A quick cash sale of a property", "Sale of property for less than the outstanding mortgage balance with lender approval", "A sale that takes less than 30 days to close", "A foreclosure auction"], answer: "Sale of property for less than the outstanding mortgage balance with lender approval" },
-            { question: "A deed in lieu of foreclosure is a voluntary transfer of property deed to lender to satisfy mortgage debt.", options: ["True", "False"], answer: "True" },
-            { question: "What is an REO property?", options: ["Real Estate Office", "Real Estate Owned - property acquired by lenders through foreclosure", "Rental Equity Opportunity", "A type of commercial property"], answer: "Real Estate Owned - property acquired by lenders through foreclosure" }
+            { question: "True or False: All real estate licensees are required to carry E&O insurance.", options: ["True", "False"], answer: "False" },
+            { question: "Which of the following is typically covered by E&O insurance?", options: ["Failure to disclose material facts", "Negligent misrepresentation", "Breach of fiduciary duty", "All of the above"], answer: "All of the above" },
+            { question: "True or False: E&O insurance premiums are based on the agent's transaction volume and claims history.", options: ["True", "False"], answer: "True" },
+            { question: "True or False: Real estate agents can avoid all liability by having clients sign hold-harmless agreements.", options: ["True", "False"], answer: "False" },
+            { question: "Which documentation practice helps protect agents from liability claims?", options: ["Keeping detailed transaction files", "Documenting all client communications", "Maintaining copies of all disclosures", "All of the above"], answer: "All of the above" },
+            { question: "True or False: Real estate agents should recommend that clients obtain independent professional advice for matters outside their expertise.", options: ["True", "False"], answer: "True" }
         ];
-        
 
         // --- STATE VARIABLES ---
         let currentQuestions = [];
@@ -289,7 +434,7 @@
                 showScreen('home-screen');
                 errorMessage.textContent = '';
             } else {
-                errorMessage.textContent = 'Incorrect password. Please try again.';
+                errorMessage.textContent = 'Incorrect access code. Please try again.';
                 passwordInput.focus();
             }
         });
@@ -307,10 +452,14 @@
             const questionCount = isFastTest ? 50 : 100;
             const durationInSeconds = isFastTest ? 60 * 60 : 150 * 60;
 
-            currentQuestions = [...allQuestions].sort(() => 0.5 - Math.random()).slice(0, questionCount);
+            let availableQuestions = [...allQuestions];
+            if (questionCount > availableQuestions.length) {
+                console.warn(`Warning: Requested ${questionCount} questions, but only ${availableQuestions.length} are available.`);
+            }
+            currentQuestions = availableQuestions.sort(() => 0.5 - Math.random()).slice(0, Math.min(questionCount, availableQuestions.length));
             
-            userAnswers = new Array(questionCount).fill(null);
-            mainQueue = Array.from({length: questionCount}, (_, i) => i);
+            userAnswers = new Array(currentQuestions.length).fill(null);
+            mainQueue = Array.from({length: currentQuestions.length}, (_, i) => i);
             skippedQueue.clear();
             questionsAttempted = 0;
 
@@ -341,15 +490,17 @@
             
             const optionsContainer = document.getElementById('options-container');
             optionsContainer.innerHTML = '';
-            questionData.options.forEach(option => {
+            questionData.options.forEach(optionText => {
+                const optionWrapper = document.createElement('div');
                 const optionEl = document.createElement('button');
-                optionEl.textContent = option;
+                optionEl.textContent = optionText;
                 optionEl.className = 'btn option-btn';
-                if (userAnswers[currentQuestionIndex] === option) {
+                if (userAnswers[currentQuestionIndex] === optionText) {
                     optionEl.classList.add('selected');
                 }
-                optionEl.onclick = () => selectAnswer(option, optionEl);
-                optionsContainer.appendChild(optionEl);
+                optionEl.onclick = () => selectAnswer(optionText, optionEl);
+                optionWrapper.appendChild(optionEl);
+                optionsContainer.appendChild(optionWrapper);
             });
         }
         
@@ -365,7 +516,6 @@
             if (userAnswers[currentQuestionIndex] === null) {
                 skippedQueue.add(currentQuestionIndex);
             } else {
-                // If an answer was provided, remove it from the skipped queue in case it was there before
                 skippedQueue.delete(currentQuestionIndex);
             }
             loadNextQuestionFromQueues();
@@ -405,7 +555,9 @@
             const reviewContent = document.getElementById('review-content');
             reviewContent.innerHTML = '';
             let hasIncorrectAnswers = false;
-            let questionNumber = 1;
+            let reviewQuestionNumber = 1;
+
+            const incorrectQuestions = [];
 
             currentQuestions.forEach((q, index) => {
                 const userAnswer = userAnswers[index];
@@ -413,30 +565,35 @@
                     correctAnswers++;
                 } else {
                     hasIncorrectAnswers = true;
-                    const reviewItem = document.createElement('div');
-                    reviewItem.className = 'p-4 border-b last:border-b-0';
-                    reviewItem.innerHTML = `
-                        <p class="font-semibold text-gray-800 mb-2">${questionNumber}. ${q.question}</p>
-                        <p class="text-red-600">Your answer: <span class="font-medium">${userAnswer || 'Not answered'}</span></p>
-                        <p class="text-green-600">Correct answer: <span class="font-medium">${q.answer}</span></p>
-                    `;
-                    reviewContent.appendChild(reviewItem);
-                    questionNumber++;
+                    incorrectQuestions.push({q, userAnswer, index});
                 }
             });
+            
+            incorrectQuestions.forEach(({q, userAnswer}) => {
+                 const reviewItem = document.createElement('div');
+                    reviewItem.className = 'p-4 border-b last:border-b-0 border-gray-200';
+                    reviewItem.innerHTML = `
+                        <p class="font-semibold text-gray-800 mb-2">${reviewQuestionNumber}. ${q.question}</p>
+                        <p class="text-red-700">Your answer: <span class="font-medium">${userAnswer || 'Not answered'}</span></p>
+                        <p class="text-green-700">Correct answer: <span class="font-medium">${q.answer}</span></p>
+                    `;
+                    reviewContent.appendChild(reviewItem);
+                    reviewQuestionNumber++;
+            });
+
 
             if (hasIncorrectAnswers) {
                 reviewBtn.classList.remove('hidden');
             } else {
                 reviewBtn.classList.add('hidden');
-                reviewContent.innerHTML = `<p class="text-center text-gray-600 p-4">Great job! No incorrect answers to review.</p>`;
+                reviewContent.innerHTML = `<p class="text-center text-gray-600 p-4">Excellent work! No incorrect answers to review.</p>`;
             }
 
-            const scorePercentage = Math.round((correctAnswers / currentQuestions.length) * 100);
+            const scorePercentage = currentQuestions.length > 0 ? Math.round((correctAnswers / currentQuestions.length) * 100) : 0;
             const passed = scorePercentage >= 75;
 
             document.getElementById('score').textContent = `${scorePercentage}%`;
-            document.getElementById('score-details').textContent = `You answered ${correctAnswers} questions correctly out of ${currentQuestions.length}.`;
+            document.getElementById('score-details').textContent = `You answered ${correctAnswers} out of ${currentQuestions.length} questions correctly.`;
             
             const resultBadge = document.getElementById('result-badge');
             if (passed) {
@@ -458,3 +615,4 @@
     </script>
 </body>
 </html>
+
